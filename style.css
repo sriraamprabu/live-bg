@@ -29,6 +29,12 @@ section {
 		padding: 125px 30px;
 	}
 }
+@media (max-width: 768px) {
+  body {
+    background: url('video/part2.mp4') no-repeat center center fixed;
+    background-size: cover;
+  }
+}
 header {
 	position: absolute;
 	top: 0;
