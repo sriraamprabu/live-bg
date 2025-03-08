@@ -43,6 +43,17 @@
         .hidden {
             display: none;
         }
+        #progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: #ff5733; /* Change color as needed */
+    transition: width 0.2s ease-in-out;
+    z-index: 9999;
+}
+
     </style>
 </head>
 <body>
@@ -51,6 +62,8 @@
     <div id="loading-screen">
         <div class="loader"></div>
     </div>
+    <div id="progress-bar"></div>
+
 
     <!-- Main Content -->
     <div id="content" class="hidden">
@@ -87,6 +100,23 @@
             width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy">
         </iframe>
     </div>
+
+    <script>
+        document.onreadystatechange = function () {
+    let progressBar = document.getElementById("progress-bar");
+
+    if (document.readyState === "interactive") {
+        progressBar.style.width = "50%"; // Halfway while loading
+    }
+    if (document.readyState === "complete") {
+        progressBar.style.width = "100%"; // Full when loaded
+        setTimeout(() => {
+            progressBar.style.display = "none"; // Hide when done
+        }, 500);
+    }
+};
+
+    </script>
 
     <script>
         function goTopage(page) {
