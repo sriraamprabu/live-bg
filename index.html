@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    body{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      flex-direction: column;
-    }
-    button{
-      display: flex;
-      position: relative;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
 </head>
 <body>
-  <h1>PAGE 1</h1><br>
-  <button onclick="location.href='./profile'">
-    Click me
-  </button>
+    <h2>Welcome to Raamvox</h2>
+    <a href="/profile">Go to Part 1</a>
+    <button onclick="goToPage('profile')">Go to Part 2</button>
+
+    <script>
+        function goToPage(page) {
+            window.location.href = "/" + page;
+        }
+    </script>
 </body>
 </html>
