@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heavy Content Loading Test</title>
     <style>
+         body {
+        visibility: hidden;
+    }
         /* Full-screen Loading Screen */
         #loading-screen {
             position: fixed;
@@ -102,6 +105,14 @@
     </div>
 
     <script>
+document.onreadystatechange = function () {
+        if (document.readyState === "complete") {
+            document.body.style.visibility = "visible";
+        }
+    };
+
+
+
         document.onreadystatechange = function () {
     let progressBar = document.getElementById("progress-bar");
 
