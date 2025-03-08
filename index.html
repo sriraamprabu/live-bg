@@ -3,17 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
+    <title>Heavy Content Loading Test</title>
+    <style>
+        /* Full-screen Loading Screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Loader Animation */
+        .loader {
+            width: 30px;
+            height: 30px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hide content initially */
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <h2>Welcome to Raamvox</h2>
-    <a href="/profile">Go to Part 1</a>
-    <button onclick="goToPage('profile')">Go to Part 2</button>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content" class="hidden">
+        <h1>Welcome to the Heavy Content Page</h1>
+        <button onclick="goTopage('profile')">PROFILE</button>
+        <p>This page contains autoplaying videos, images, and audio for testing real-time loading.</p>
+
+        <!-- Large Images -->
+        <img src="https://source.unsplash.com/1920x1080/?nature" width="100%" alt="Nature Image">
+        <img src="https://source.unsplash.com/1920x1080/?technology" width="100%" alt="Technology Image">
+
+        <!-- Auto-playing Video -->
+        <video width="100%" height="400" autoplay loop muted>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <!-- GIF Animation -->
+        <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" width="100%" alt="GIF Animation">
+
+        <!-- Auto-playing Audio -->
+        <audio autoplay loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+
+        <!-- YouTube Video -->
+        <iframe width="100%" height="400" src="https://www.youtube.com/embed/3JZ_D3ELwOQ?autoplay=1&mute=1" 
+        title="YouTube video" frameborder="0" allowfullscreen></iframe>
+
+        <!-- Google Maps -->
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345086166!2d144.9559283153173!3d-37.8172099797517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ce6e0!2sMelbourne%2C%20Australia!5e0!3m2!1sen!2sin!4v1633032800000!5m2!1sen!2sin" 
+            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+    </div>
 
     <script>
-        function goToPage(page) {
+        function goTopage(page) {
             window.location.href = "/" + page;
         }
     </script>
+    <script>
+        function showContentAfterLoad() {
+            let loader = document.getElementById("loading-screen");
+            let content = document.getElementById("content");
+
+            // Fade out the loader
+            loader.style.opacity = "0";
+            setTimeout(() => {
+                loader.style.display = "none";
+                content.classList.remove("hidden");
+            }, 100);
+        }
+
+        // Wait for full page load
+        window.addEventListener("load", showContentAfterLoad);
+    </script>
+
 </body>
 </html>
