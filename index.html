@@ -3,15 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-
     <title>Heavy Content Loading Test</title>
     <style>
-         body {
-        visibility: hidden;
-    }
         /* Full-screen Loading Screen */
         #loading-screen {
             position: fixed;
@@ -50,17 +43,6 @@
         .hidden {
             display: none;
         }
-        #progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 3px;
-    background: #ff5733; /* Change color as needed */
-    transition: width 0.2s ease-in-out;
-    z-index: 9999;
-}
-
     </style>
 </head>
 <body>
@@ -69,7 +51,6 @@
     <div id="loading-screen">
         <div class="loader"></div>
     </div>
-    <div id="progress-bar"></div>
 
 
     <!-- Main Content -->
@@ -108,30 +89,6 @@
         </iframe>
     </div>
 
-    <script>
-document.onreadystatechange = function () {
-        if (document.readyState === "complete") {
-            document.body.style.visibility = "visible";
-        }
-    };
-
-
-
-        document.onreadystatechange = function () {
-    let progressBar = document.getElementById("progress-bar");
-
-    if (document.readyState === "interactive") {
-        progressBar.style.width = "50%"; // Halfway while loading
-    }
-    if (document.readyState === "complete") {
-        progressBar.style.width = "100%"; // Full when loaded
-        setTimeout(() => {
-            progressBar.style.display = "none"; // Hide when done
-        }, 500);
-    }
-};
-
-    </script>
 
     <script>
         function goTopage(page) {
