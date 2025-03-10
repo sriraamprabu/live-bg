@@ -1,0 +1,73 @@
+:root {
+    --size: 20px; /* Reduced size */
+    --duration: 800ms;
+    --color: #FFFFFF; /* Main white box */
+    --colorRight: #DDDDDD; /* Light grey for right */
+    --colorLeft: #BBBBBB; /* Slightly darker grey for left */
+    --shadow: #3c3c3c; /* Darker shadow for depth */
+}
+
+body {
+    min-height: 100vh;
+    font-family: Roboto, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #121212;
+    overflow: hidden;
+}
+
+.boxes {
+    height: calc(var(--size) * 2);
+    width: calc(var(--size) * 3);
+    position: relative;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50%;
+    transform: rotateX(60deg) rotateZ(45deg) translateZ(0px);
+}
+
+.box {
+    width: var(--size);
+    height: var(--size);
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+.box:nth-child(1) { transform: translate(100%, 0); animation: box1 var(--duration) linear infinite; }
+.box:nth-child(2) { transform: translate(0, 100%); animation: box2 var(--duration) linear infinite; }
+.box:nth-child(3) { transform: translate(100%, 100%); animation: box3 var(--duration) linear infinite; }
+.box:nth-child(4) { transform: translate(200%, 0); animation: box4 var(--duration) linear infinite; }
+
+.box div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--color);
+    transform: translateZ(calc(var(--size) / 2));
+}
+
+.box div:nth-child(2) { background: var(--colorRight); transform: rotateY(90deg) translateZ(calc(var(--size) / 2)); }
+.box div:nth-child(3) { background: var(--colorLeft); transform: rotateX(-90deg) translateZ(calc(var(--size) / 2)); }
+.box div:nth-child(4) { background: var(--shadow); transform: translateZ(calc(var(--size) * -3)); }
+
+@keyframes box1 {
+    0%, 50% { transform: translate(100%, 0); }
+    100% { transform: translate(200%, 0); }
+}
+
+@keyframes box2 {
+    0% { transform: translate(0, 100%); }
+    50% { transform: translate(0, 0); }
+    100% { transform: translate(100%, 0); }
+}
+
+@keyframes box3 {
+    0%, 50% { transform: translate(100%, 100%); }
+    100% { transform: translate(0, 100%); }
+}
+
+@keyframes box4 {
+    0% { transform: translate(200%, 0); }
+    50% { transform: translate(200%, 100%); }
+    100% { transform: translate(100%, 100%); }
+}
